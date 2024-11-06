@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "postgres",
-    "password": "postgres",
+    "password": "1510Nazmi",
     "database": "fox-sense-insurance",
     "host": "127.0.0.1",
     "dialect": "postgres"
