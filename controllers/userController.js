@@ -1,6 +1,6 @@
 class UserController {
   // read
-  static async loginUser(req, res) {
+  static async readUser(req, res) {
     try {
       // memasukkan data yang dipanggil
       const data = {
@@ -13,7 +13,7 @@ class UserController {
   }
 
   // showCreate (form)
-  static async registerUser(req, res) {
+  static async createUserForm(req, res) {
     try {
       // memasukkan data yang dipanggil
       const data = {

@@ -1,11 +1,26 @@
+const { Policy } = require("../models");
+
 class PolicyController {
   static async readPolicy(req, res) {
-    try {
+    try
+    {
+      const profile = await Policy.readAllPolicy()
+      res.send(profiles)
     } catch (error) {
       res.send(error);
     }
   }
 
+  static async readPolicyByProfileId(req, res) {
+    try {
+      const { profileId } = req.params;
+      const profile = await Policy.readPolicyByProfileId(profileId)
+      
+      res.send(profile);
+    } catch (error) {
+      res.send(error);
+    }
+  }
   static async addPolicyForm(req, res) {
     try {
     } catch (error) {
