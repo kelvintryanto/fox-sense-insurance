@@ -1,2 +1,74 @@
 <%- include("./partial/_header.ejs") %>
 
+<!-- INTERNAL CSS -->
+<style>
+    body {
+        overflow-x: hidden; 
+    }
+    .navbar-brand {
+        margin-left: 15px; 
+    }
+    .navbar .search-group {
+        display: flex;
+        gap: 3px; 
+    }
+    .navbar .form-control {
+        max-width: 200px; 
+    }
+    .navbar .dropdown {
+        margin-right: 10px; 
+    }
+    .dropdown-menu {
+        min-width: 100%; 
+    }
+</style>
+
+<div class="container-fluid">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary w-100 fixed-top">
+        <a class="navbar-brand" href="#">Fox Sense</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="d-flex w-100 align-items-center">
+                <div class="search-group mx-auto">
+                    <form action="" method="post">
+                        <input class="form-control" type="search" placeholder="Search bar Policies" aria-label="Search Policies">
+                        <input class="form-control" type="search" placeholder="Search bar Customers" aria-label="Search Customers">
+                        <button class="btn btn-secondary" type="submit">Search</button>
+                    </form>
+                </div>
+                <div class="dropdown ml-auto">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Name
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Log out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="row" style="margin-top: 56px;">
+        <div class="col-2 bg-light border-right">
+            <!-- SIDEBAR -->
+            <div class="nav flex-column nav-pills">
+                <a class="nav-link text-dark" href="#">Policies</a>
+                <a class="nav-link text-dark" href="#">Customers</a>
+            </div>
+        </div>
+        <div class="col-10" style="margin-bottom: 10000px;">
+            <!-- MAIN -->
+            <div class="p-4">
+                <h2>Home</h2>
+                <p>++++++</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("./partial/_footer.ejs") %>

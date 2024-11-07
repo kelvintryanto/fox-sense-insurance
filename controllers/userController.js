@@ -15,6 +15,8 @@ class UserController {
       res.send(error);
     }
   }
+
+  
 }
 
 module.exports = UserController;

@@ -1,9 +1,10 @@
+const AgentController = require("../controllers/agentController");
 const UserController = require("../controllers/userController");
 
 const router = require("express").Router();
 
 //  === Agent ===
-// router.get("/agent/profile");
+router.get("/agent", AgentController.showAgentHome);
 
 //  === Customer ===
 router.get("/login", UserController.loginUser);
