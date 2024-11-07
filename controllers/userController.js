@@ -29,15 +29,18 @@ class UserController {
   static async loginUser(req, res) {
     try {
       const { email, password } = req.body;
-      const foundUser = await User.findUserWithEmail(email);
-      
-      if (foundUser)
-      {
-        if(foundUser)
-        res.render("profile/readProfile", { data });
-        
-      }
-      else res.redirect("/");
+      const user = await User.findUserWithEmail(email);
+
+      if (user && bcrypt.compare(user.password, password)) {
+        req.session.user = {
+          id: user.id,
+          email: user.email,
+          fullName: user.Profile.fullName,
+        };
+
+        console.log(user.id);
+        res.redirect(`/profile/read/${user.id}`);
+      } else res.redirect("/");
     } catch (error) {
       res.send(error);
     }
