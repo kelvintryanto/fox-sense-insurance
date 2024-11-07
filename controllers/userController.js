@@ -1,4 +1,15 @@
 class UserController {
+  static async showLandingPage(req, res) {
+    try {
+      const data = {
+        title: "Landing Page",
+      };
+      res.render("landingpage", { data });
+    } catch (error) {
+      res.send(error);
+    }
+  }
+
   // read
   static async readUser(req, res) {
     try {
