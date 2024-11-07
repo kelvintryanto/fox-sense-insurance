@@ -1,4 +1,5 @@
 const { User } = require("../models");
+const bcrypt = require("bcryptjs");
 
 class UserController {
   static async showLandingPage(req, res) {
@@ -29,9 +30,12 @@ class UserController {
     try {
       const { email, password } = req.body;
       const foundUser = await User.findUserWithEmail(email);
-      console.log(foundUser);
+      const isValidated = bcrypt.compareSync(password, foundUser.password);
+      let validatedUser;
+      if (isValidated) validatedUser = foundUser;
       const data = {
         title: "Profile",
+        user: foundUser,
       };
       res.render("profile/readProfile", { data });
     } catch (error) {
