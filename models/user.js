@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
 
     static async findUserWithEmail(email) {
       try {
-        const foundUser = await User.findAll({
+        const foundUser = await User.findOne({
           where: {
             email: email,
           },
