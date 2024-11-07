@@ -1,31 +1,36 @@
 <%- include("./partial/_header.ejs") %>
 
-    <div class="card-container text-center mb-4">
-        <div class="d-flex justify-content-center">
-            <div class="col-4">
-                <h2 class="text-dark my-5">Fox Sense Insurance</h2>
-                <div class="card shadow p-4">
-                    <h3 class="text-center mb-4">Register</h3>
-                    <form>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="Email">
-                            <label for="floatingInput">Email Address</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Password</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Repeat new password</label>
-                        </div>
-                    
-                        <button class="btn btn-primary w-100 mb-3">Register</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+
+<div class="container pt-3">
+  <div class="text-end">
+    <a class="nav-link" href="" id="themeToggleBtn"><i class="fas fa-sun"></i></a>
+  </div>
+</div>
+<div class="card-container text-center">
+  <div class="d-flex justify-content-center">
+    <div class="col-lg-4 col-sm-8">
+      <h2 class="my-5">Fox Sense Insurance</h2>
+      <div class="card shadow p-4">
+        <h3 class="text-center mb-4">Register</h3>
+        <form class="mt-4">
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="Email" />
+            <label for="floatingInput">Email Address</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" />
+            <label for="floatingPassword">Password</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" />
+            <label for="floatingPassword">Repeat new password</label>
+          </div>
+
+          <button class="btn btn-primary w-100 my-4">Register</button>
+        </form>
+      </div>
     </div>
+  </div>
+</div>
 
 <%- include("./partial/_footer.ejs") %>
-

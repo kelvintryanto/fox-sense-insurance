@@ -1,23 +1,44 @@
+const PolicyController = require("../controllers/policyController");
+const ProfileController = require("../controllers/profileController");
 const AgentController = require("../controllers/agentController");
 const UserController = require("../controllers/userController");
 
 const router = require("express").Router();
 
+// default untuk login di dalam user
+router.get("/", (req, res) => {
+  res.redirect("/login");
+});
 //  === Agent ===
-router.get("/agent", AgentController.showAgentHome);
+router.get("/agent", AgentController.readAgent);
 
 //  === Customer ===
-router.get("/login", UserController.loginUser);
-router.get("/register", UserController.registerUser);
-// router.get("/customer");
-// router.get("/customer/profile");
+router.get("/login", UserController.readUser);
+router.get("/register", UserController.createUserForm);
+// register akan bersamaan dengan pembuatan profileId dan roleId
+// untuk pembuatan otomatis roleId = [1,2], kalau 1 => "Customer", kalau 2 => Agent
+router.post("/register", UserController.createUser);
+router.get("/changePassword", UserController.updateUserForm);
+router.post("/changePassword", UserController.updateUser);
+// harus diingat bahwa agent tidak bisa delete dirinya sendiri karena seperti super admin
+router.get("/delete", UserController.deleteUser);
 
 //   === policy ===
-// todobynopal
-// router.get("/customer/policies");
-// router.get("/customer/policies/create");
-// router.post("/customer/policies/create");
-// router.get("/customer/policies/edit");
-// router.post("/customer/policies/edit");
+router.get("/agent/policies/read", PolicyController.readPolicy);
+router.get("/user/policy/read/:profileId", PolicyController.readPolicyByProfileId);
+router.get("/user/policy/create");
+router.post("/user/policy/create");
+router.get("/user/policy/edit");
+router.post("/user/policy/edit");
+
+//  === Agent Profile & User Profile ===
+// ditaruh di bawah karena di segment ketiga ada parameter
+router.get("/profile/read/:userId", ProfileController.readUser);
+// post create Agent dan User dibuat otomatis, ketika ada yang createUser
+router.post("/profile/create/:userId", ProfileController.createUser);
+// get create profile tidak ada karena sudah dibuatkan otomatis profile Idnya serial dan diisi hanya dengan userId
+router.get("/profile/update/:userId", ProfileController.updateUserForm);
+router.post("/profile/update/:userId", ProfileController.updateUser);
+// get tidak ada karena delete Profile sama saja dengan deleteUser
 
 module.exports = router;
