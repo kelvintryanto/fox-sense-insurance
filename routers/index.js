@@ -13,14 +13,20 @@ router.get("/", (req, res) => {
 
 //  === Customer ===
 router.get("/login", UserController.readUser);
-router.get("/register", UserController.createUserForm);
-// register akan bersamaan dengan pembuatan profileId dan roleId
-// untuk pembuatan otomatis roleId = [1,2], kalau 1 => "Customer", kalau 2 => Agent
-// router.post("/register", UserController.createUser);
-// router.get("/changePassword", UserController.updateUserForm);
-// router.post("/changePassword", UserController.updateUser);
+/* tidak ada register, karena pembuatan email dan address nanti jika user diberikan link melalui twilio
+ * router.get("/register", UserController.createUserForm);
+ * register akan bersamaan dengan pembuatan profileId dan roleId
+ * untuk pembuatan otomatis roleId = [1,2], kalau 1 => "Customer", kalau 2 => Agent
+ * router.post("/register", UserController.createUser);
+**/
+
+// router ini berguna untuk masuk ke link changeemailpassword untuk membuat email dan password
+router.get("/changeemailpassword", UserController.updateUserForm);
+router.post("/changeemailpassword", UserController.updateUser);
 // harus diingat bahwa agent tidak bisa delete dirinya sendiri karena seperti super admin
 // router.get("/delete", UserController.deleteUser);
+
+
 
 //   === policy ===
 // router.get("/agent/policies/read", PolicyController.readPolicy);
