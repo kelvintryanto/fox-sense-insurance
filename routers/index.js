@@ -5,9 +5,7 @@ const UserController = require("../controllers/userController");
 const router = require("express").Router();
 
 // default untuk login di dalam user
-router.get("/", (req, res) => {
-  res.redirect("/login");
-});
+router.get("/", UserController.showLandingPage);
 
 //  === Customer ===
 router.get("/login", UserController.readUser);
