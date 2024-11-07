@@ -15,7 +15,7 @@ class UserController {
   // showCreate (form)
   static async createUserForm(req, res) {
     try {
-      const  {email, password, }      
+      // const  {email, password, }      
       
       // memasukkan data yang dipanggil
       const data = {

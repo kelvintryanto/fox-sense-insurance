@@ -2,14 +2,12 @@ const PolicyController = require("../controllers/policyController");
 const ProfileController = require("../controllers/profileController");
 const UserController = require("../controllers/userController");
 
-
 const router = require("express").Router();
 
 // default untuk login di dalam user
 router.get("/", (req, res) => {
   res.redirect("/login");
 });
-
 
 //  === Customer ===
 router.get("/login", UserController.readUser);
@@ -32,7 +30,7 @@ router.get("/register", UserController.createUserForm);
 
 //  === Agent Profile & User Profile ===
 // ditaruh di bawah karena di segment ketiga ada parameter
-// router.get("/profile/read/:userId", ProfileController.readUser);
+router.get("/profile/read/:userId", ProfileController.readProfile);
 // post create Agent dan User dibuat otomatis, ketika ada yang createUser
 // router.post("/profile/create/:userId", ProfileController.createUser);
 // get create profile tidak ada karena sudah dibuatkan otomatis profile Idnya serial dan diisi hanya dengan userId
