@@ -11,6 +11,16 @@ router.get("/", (req, res) => {
 
 //  === Customer ===
 router.get("/login", UserController.readUser);
+/* tidak ada register, karena pembuatan email dan address nanti jika user diberikan link melalui twilio
+ * router.get("/register", UserController.createUserForm);
+ * register akan bersamaan dengan pembuatan profileId dan roleId
+ * untuk pembuatan otomatis roleId = [1,2], kalau 1 => "Customer", kalau 2 => Agent
+ * router.post("/register", UserController.createUser);
+ **/
+
+// router ini berguna untuk masuk ke link changeemailpassword untuk membuat email dan password
+router.get("/changeemailpassword", UserController.updateUserForm);
+router.post("/changeemailpassword", UserController.updateUser);
 // router.get("/register", UserController.createUserForm);
 router.get("/changePassword", UserController.changePassword);
 // register akan bersamaan dengan pembuatan profileId dan roleId
