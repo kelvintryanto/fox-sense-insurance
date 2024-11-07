@@ -6,7 +6,7 @@ class UserController {
       const data = {
         title: "Login User",
       };
-      res.render("login", { data });
+      res.render("user/login", { data });
     } catch (error) {
       res.send(error);
     }
@@ -20,9 +20,8 @@ class UserController {
         title: "Register User",
       };
 
-      res.send(data);
+      res.render("user/register", { data });
 
-      // res.render("register", { data });
     } catch (error) {
       console.log(error);
       res.send(error);
@@ -41,11 +40,12 @@ class UserController {
 
   // updateUserForm
   static async updateUserForm(req, res) {
-    try
-    {
+    try {
       const data = {
-        title: "Change Password"
-      }
+        title: "Change Password",
+      };
+      
+      res.render("user/changepassword", {data})
     } catch (error) {
       res.send(error);
     }
@@ -53,7 +53,9 @@ class UserController {
 
   // updateUser
   static async updateUser(req, res) {
-    try {
+    try
+    {
+      res.redirect('profile/profile')
     } catch (error) {
       res.send(error);
     }

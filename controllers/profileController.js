@@ -1,21 +1,20 @@
 class ProfileController {
   static async readProfile(req, res) {
-    try
-    {
+    try {
       const data = {
-        title: "Profile"
-      }
+        title: "Profile",
+      };
+      res.render("homeUser", { data });
     } catch (error) {
       res.send(error);
     }
   }
 
   static async addProfileForm(req, res) {
-    try
-    {
+    try {
       const data = {
-        title: "Create Profile"
-      }
+        title: "Create Profile",
+      };
     } catch (error) {
       res.send(error);
     }
@@ -29,11 +28,10 @@ class ProfileController {
   }
 
   static async updateProfileForm(req, res) {
-    try
-    {
+    try {
       const data = {
-        title: "Update Profile"
-      }
+        title: "Update Profile",
+      };
     } catch (error) {
       res.send(error);
     }
@@ -47,32 +45,6 @@ class ProfileController {
   }
 
   static async deleteProfile(req, res) {
-    try {
-    } catch (error) {
-      res.send(error);
-    }
-  }
-  static async readUser(req, res) {
-    try {
-      res.render('HomeUser')
-    } catch (error) {
-      res.send(error);
-    }
-  }
-  static async createUser(req, res) {
-    try {
-    } catch (error) {
-      res.send(error);
-    }
-  }
-  static async updateUserForm(req, res) {
-    try {
-
-    } catch (error) {
-      res.send(error);
-    }
-  }
-  static async updateUser(req, res) {
     try {
     } catch (error) {
       res.send(error);
