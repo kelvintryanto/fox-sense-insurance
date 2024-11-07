@@ -1,13 +1,21 @@
 class ProfileController {
   static async readProfile(req, res) {
-    try {
+    try
+    {
+      const data = {
+        title: "Profile"
+      }
     } catch (error) {
       res.send(error);
     }
   }
 
   static async addProfileForm(req, res) {
-    try {
+    try
+    {
+      const data = {
+        title: "Create Profile"
+      }
     } catch (error) {
       res.send(error);
     }
@@ -21,7 +29,11 @@ class ProfileController {
   }
 
   static async updateProfileForm(req, res) {
-    try {
+    try
+    {
+      const data = {
+        title: "Update Profile"
+      }
     } catch (error) {
       res.send(error);
     }

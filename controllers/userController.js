@@ -41,7 +41,11 @@ class UserController {
 
   // updateUserForm
   static async updateUserForm(req, res) {
-    try {
+    try
+    {
+      const data = {
+        title: "Change Password"
+      }
     } catch (error) {
       res.send(error);
     }

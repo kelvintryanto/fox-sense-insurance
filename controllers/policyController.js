@@ -5,6 +5,11 @@ class PolicyController {
     try
     {
       const profile = await Policy.readAllPolicy()
+      
+      
+      const data = {
+        title: "Policy"
+      }
       res.send(profiles)
     } catch (error) {
       res.send(error);
@@ -16,13 +21,21 @@ class PolicyController {
       const { profileId } = req.params;
       const profile = await Policy.readPolicyByProfileId(profileId)
       
+      
+      const data = {
+        title: "Policy"
+      }
       res.send(profile);
     } catch (error) {
       res.send(error);
     }
   }
   static async addPolicyForm(req, res) {
-    try {
+    try
+    {
+      const data = {
+        title: "Policy Form"
+      }
     } catch (error) {
       res.send(error);
     }
@@ -36,7 +49,11 @@ class PolicyController {
   }
 
   static async updatePolicyForm(req, res) {
-    try {
+    try
+    {
+      const data = {
+        title: "Update Policy Form"
+      }
     } catch (error) {
       res.send(error);
     }
