@@ -16,7 +16,7 @@ class UserController {
   // register user form tidak ada, nanti dibikinkan saat
   // membuat policies
   // static async createUserForm(req, res) {
-  //   try { 
+  //   try {
   //     // memasukkan data yang dipanggil
   //     const data = {
   //       title: "Register User",
@@ -29,6 +29,14 @@ class UserController {
   //     res.send(error);
   //   }
   // }
+
+  static async changePassword(req, res) {
+    try {
+      res.render("user/changePassword");
+    } catch (error) {
+      res.send(error);
+    }
+  }
 
   // createUser tetap ada karena dibutuhkan saat membuat user
   static async createUser(req, res) {
@@ -47,21 +55,19 @@ class UserController {
       const data = {
         title: "Change Email & Password",
       };
-      
-      res.render("user/changeemailpassword", {data})
+
+      res.render("user/changeemailpassword", { data });
     } catch (error) {
       res.send(error);
     }
   }
 
   // updateUser
-  // 
+  //
   static async updateUser(req, res) {
-    try
-    {
-      
+    try {
       // redirect ke login ketika sudah update user karena harus login
-      res.redirect('/')
+      res.redirect("/");
     } catch (error) {
       res.send(error);
     }

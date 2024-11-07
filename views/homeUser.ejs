@@ -94,12 +94,7 @@
         </div>
     </nav>
 
-    <div class="row" style="margin-top: 56px;">
-        <div class="sidebar">
-            <div class="nav flex-column nav-pills">
-                <a class="nav-link" href="#">Policies</a>
-            </div>
-        </div>
+    <%- include('./partial/user/_seeder.ejs') %>
 
         <div class="main-content col-10" style="margin-bottom: 1000px;">
             <div class="p-4">
@@ -110,4 +105,4 @@
     </div>
 </div>
 
-<%- include("./partial/_footer.ejs") %>
+<%- include("./partial/user/_footer.ejs") %>
