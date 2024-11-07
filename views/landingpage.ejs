@@ -1,2 +1,91 @@
-Hello This is Landing Page
-Nopal edit di sini
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fox Sense</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <style>
+        body {
+          font-family: 'Poppins', sans-serif;
+        }
+      </style>
+
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #007bff;">
+    <div class="container">
+      <a class="navbar-brand text-white" href="#">Fox Sense Insurance</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a href="/login" class="btn btn-light text-primary rounded-pill ms-lg-3">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section id="home" class="py-5 text-center" style="background-image: url('https://images.pexels.com/photos/3184422/pexels-photo-3184422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-size: cover; background-position: center; height: 65vh; margin-top: 55px;">
+    <div class="container">
+      <h1 class="display-4 hero-text" style=" color: #004085; text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.8); ">Protect Your Future with Us</h1>
+      <p class="lead hero-text"  style=" color: #004085; text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.8); ">Your trusted insurance partner for a secure tomorrow.</p>
+      <a href="#features" class="btn btn-primary btn-lg mt-3">Learn More</a>
+    </div>
+  </section>
+
+  <section  class="py-5" style="background-color: #f0f8ff;">
+    <div class="container">
+      <h2 class="text-center text-primary mb-5">Our Features</h2>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 shadow border-primary">
+            <div class="card-body text-center">
+              <h5 class="card-title text-primary">Policy Management for Agents</h5>
+              <p class="card-text">Enables agents to view and manage the policies of their clients, ensuring efficient service and record-keeping.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 shadow border-primary">
+            <div class="card-body text-center">
+              <h5 class="card-title text-primary">Client Profile and Policy View</h5>
+              <p class="card-text">Allows clients to view their own policy details and manage their profile with ease and security.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 shadow border-primary">
+            <div class="card-body text-center">
+              <h5 class="card-title text-primary">Client Registration for Agents</h5>
+              <p class="card-text">Enables agents to register new clients swiftly, ensuring a seamless onboarding process for both the client and the agency.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="database" class="py-5">
+    <div class="container">
+      <h2 class="text-center text-primary mb-3">Our Database</h2>
+      <p class="text-center mb-5">Below is the Entity Relationship Diagram (ERD) that showcases the database structure of our system. It represents the relationships between the various entities such as Policies, Users, Types and profiles.</p>
+      <div class="text-center">
+        <img src="/erd.png" alt="Entity Relationship Diagram" class="img-fluid" style="max-width: 50%; height: auto;">
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-3" style="background-color: #007bff;">
+    <div class="container text-center text-white">
+      <p class="mb-0">© 2024 Fox Sense Insurance. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
