@@ -39,7 +39,6 @@ class UserController {
     }
   }
 
-  
   // updateUserForm
   static async updateUserForm(req, res) {
     try {
@@ -48,7 +47,6 @@ class UserController {
     }
   }
 
-  
   // updateUser
   static async updateUser(req, res) {
     try {

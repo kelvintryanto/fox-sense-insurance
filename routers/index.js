@@ -1,5 +1,6 @@
 const PolicyController = require("../controllers/policyController");
 const ProfileController = require("../controllers/profileController");
+const AgentController = require("../controllers/agentController");
 const UserController = require("../controllers/userController");
 
 const router = require("express").Router();
@@ -9,7 +10,7 @@ router.get("/", (req, res) => {
   res.redirect("/login");
 });
 //  === Agent ===
-// router.get("/agent/profile");
+router.get("/agent", AgentController.readAgent);
 
 //  === Customer ===
 router.get("/login", UserController.readUser);
@@ -24,25 +25,20 @@ router.get("/delete", UserController.deleteUser);
 
 //   === policy ===
 router.get("/agent/policies/read", PolicyController.readPolicy);
-router.get("/user/policy/read/:profileId", PolicyController.readPolicyByProfileId)
-router.get("/user/policy/create", );
+router.get("/user/policy/read/:profileId", PolicyController.readPolicyByProfileId);
+router.get("/user/policy/create");
 router.post("/user/policy/create");
 router.get("/user/policy/edit");
 router.post("/user/policy/edit");
 
-
 //  === Agent Profile & User Profile ===
 // ditaruh di bawah karena di segment ketiga ada parameter
-router.get("/profile/read/:userId", ProfileController.readUser)
+router.get("/profile/read/:userId", ProfileController.readUser);
 // post create Agent dan User dibuat otomatis, ketika ada yang createUser
-router.post("/profile/create/:userId", ProfileController.createUser)
+router.post("/profile/create/:userId", ProfileController.createUser);
 // get create profile tidak ada karena sudah dibuatkan otomatis profile Idnya serial dan diisi hanya dengan userId
-router.get("/profile/update/:userId", ProfileController.updateUserForm)
-router.post("/profile/update/:userId", ProfileController.updateUser)
+router.get("/profile/update/:userId", ProfileController.updateUserForm);
+router.post("/profile/update/:userId", ProfileController.updateUser);
 // get tidak ada karena delete Profile sama saja dengan deleteUser
-
-
-
-
 
 module.exports = router;
