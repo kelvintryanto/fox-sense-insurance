@@ -71,6 +71,7 @@
 
 <div class="container-fluid p-0">
     <nav class="navbar navbar-expand-lg navbar-light w-100 fixed-top">
+        <img src="" alt="">
         <a class="navbar-brand" href="#">Fox Sense</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -96,10 +97,22 @@
 
     <%- include('./partial/user/_sidebar.ejs') %>
 
-        <div class="main-content col-10" style="margin-bottom: 1000px;">
-            <div class="p-4">
-                <h2>Home</h2>
-                <p>++++++</p>
+    <div class="main-content col-10">
+        <div class="p-4">
+            <div class="d-flex justify-content-between">
+                <h2 class="text-center mb-5">Profile</h2>
+                <button class="btn btn-primary btn-sm rounded-pill py-0" style="height: 45px;">Edit Profile</button>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Full Name: john Doe </h5>
+                    <h5>Birth Place: Swiss</h5>
+                    <h5>Birth Date: 11/10/2005 </h5>
+                    <h5>Gender: male </h5>
+                    <h5>Phone Number: 0899990889</h5>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-4">
             </div>
         </div>
     </div>
