@@ -15,7 +15,7 @@ module.exports = {
       onDelete: "SET NULL",
     });
     
-    // todobykt sampai di sini sebelum pull 07/11/2024
+    await queryInterface.addConstraint("Agent")
     /**
      * Add altering commands here.
      *
