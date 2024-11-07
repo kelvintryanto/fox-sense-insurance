@@ -9,6 +9,7 @@ router.get("/", UserController.showLandingPage);
 
 //  === Customer ===
 router.get("/login", UserController.readUser);
+router.post("/login", Usercontroller.loginUser);
 /* tidak ada register, karena pembuatan email dan address nanti jika user diberikan link melalui twilio
  * router.get("/register", UserController.createUserForm);
  * register akan bersamaan dengan pembuatan profileId dan roleId

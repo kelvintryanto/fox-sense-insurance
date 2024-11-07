@@ -1,3 +1,5 @@
+const { User } = require("../models");
+
 class UserController {
   static async showLandingPage(req, res) {
     try {
@@ -18,6 +20,20 @@ class UserController {
         title: "Login User",
       };
       res.render("user/login", { data });
+    } catch (error) {
+      res.send(error);
+    }
+  }
+
+  static async loginUser(req, res) {
+    try {
+      const { email, password } = req.body;
+      const foundUser = await User.findUserWithEmail(email);
+      console.log(foundUser);
+      const data = {
+        title: "Profile",
+      };
+      res.render("profile/readProfile", { data });
     } catch (error) {
       res.send(error);
     }
