@@ -13,24 +13,24 @@ class UserController {
   }
 
   // showCreate (form)
-  static async createUserForm(req, res) {
-    try {
-      // const  {email, password, }      
-      
-      // memasukkan data yang dipanggil
-      const data = {
-        title: "Register User",
-      };
+  // register user form tidak ada, nanti dibikinkan saat
+  // membuat policies
+  // static async createUserForm(req, res) {
+  //   try { 
+  //     // memasukkan data yang dipanggil
+  //     const data = {
+  //       title: "Register User",
+  //     };
 
-      res.render("user/register", { data });
+  //     res.render("user/register", { data });
 
-    } catch (error) {
-      console.log(error);
-      res.send(error);
-    }
-  }
+  //   } catch (error) {
+  //     console.log(error);
+  //     res.send(error);
+  //   }
+  // }
 
-  // createUser
+  // createUser tetap ada karena dibutuhkan saat membuat user
   static async createUser(req, res) {
     try {
       // kembali ke login
@@ -41,39 +41,41 @@ class UserController {
   }
 
   // updateUserForm
+  // masuk ke sini ketika sudah didaftarkan polisnya
   static async updateUserForm(req, res) {
     try {
       const data = {
-        title: "Change Password",
+        title: "Change Email & Password",
       };
       
-      res.render("user/changepassword", {data})
+      res.render("user/changeemailpassword", {data})
     } catch (error) {
       res.send(error);
     }
   }
 
   // updateUser
+  // 
   static async updateUser(req, res) {
     try
     {
-      res.redirect('profile/profile')
+      
+      // redirect ke login ketika sudah update user karena harus login
+      res.redirect('/')
     } catch (error) {
       res.send(error);
     }
   }
 
-  // deleteUser harus pakai prompt dari front end pakai modal bootstrap
-  // tulisannya are you sure to delete user?
-  // https://getbootstrap.com/docs/5.3/components/modal/#how-it-works
-  static async deleteUser(req, res) {
-    try {
-      // kembali ke login
-      res.redirect("/");
-    } catch (error) {
-      res.send(error);
-    }
-  }
+  // deleteUser ditiadakan karena kalau dihapus akan hilang data polisnya juga
+  // static async deleteUser(req, res) {
+  //   try {
+  //     // kembali ke login
+  //     res.redirect("/");
+  //   } catch (error) {
+  //     res.send(error);
+  //   }
+  // }
 }
 
 module.exports = UserController;
