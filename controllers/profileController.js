@@ -52,6 +52,32 @@ class ProfileController {
       res.send(error);
     }
   }
+  static async readUser(req, res) {
+    try {
+      res.render('HomeUser')
+    } catch (error) {
+      res.send(error);
+    }
+  }
+  static async createUser(req, res) {
+    try {
+    } catch (error) {
+      res.send(error);
+    }
+  }
+  static async updateUserForm(req, res) {
+    try {
+
+    } catch (error) {
+      res.send(error);
+    }
+  }
+  static async updateUser(req, res) {
+    try {
+    } catch (error) {
+      res.send(error);
+    }
+  }
 }
 
 module.exports = ProfileController;

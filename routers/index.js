@@ -33,12 +33,12 @@ router.post("/user/policy/edit");
 
 //  === Agent Profile & User Profile ===
 // ditaruh di bawah karena di segment ketiga ada parameter
-// router.get("/profile/read/:userId", ProfileController.readUser);
+router.get("/profile/read/:userId", ProfileController.readUser);
 // post create Agent dan User dibuat otomatis, ketika ada yang createUser
-// router.post("/profile/create/:userId", ProfileController.createUser);
+router.post("/profile/create/:userId", ProfileController.createUser);
 // get create profile tidak ada karena sudah dibuatkan otomatis profile Idnya serial dan diisi hanya dengan userId
-// router.get("/profile/update/:userId", ProfileController.updateUserForm);
-// router.post("/profile/update/:userId", ProfileController.updateUser);
+router.get("/profile/update/:userId", ProfileController.updateUserForm);
+router.post("/profile/update/:userId", ProfileController.updateUser);
 // get tidak ada karena delete Profile sama saja dengan deleteUser
 
 module.exports = router;
