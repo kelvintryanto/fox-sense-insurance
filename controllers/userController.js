@@ -39,7 +39,7 @@ class UserController {
           fullName: user.Profile.fullName,
         };
 
-        console.log(user.id);
+        // console.log(user.id);
         res.redirect(`/profile/read/${user.id}`);
       } else res.redirect("/");
     } catch (error) {
