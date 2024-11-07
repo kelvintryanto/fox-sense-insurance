@@ -1,30 +1,30 @@
 <%- include("./partial/_header.ejs") %>
 
-<!-- INTERNAL CSS -->
+<!-- Tambahkan CSS untuk tampilan khusus -->
 <style>
     body {
-        overflow-x: hidden; 
+        overflow-x: hidden; /* Menghilangkan scroll horizontal */
     }
     .navbar-brand {
-        margin-left: 15px; 
+        margin-left: 15px; /* Memberikan jarak pada logo */
     }
     .navbar .search-group {
         display: flex;
-        gap: 3px; 
+        gap: 3px; /* Jarak antara kedua search bar */
     }
     .navbar .form-control {
-        max-width: 200px; 
+        max-width: 200px; /* Membatasi lebar search bar */
     }
     .navbar .dropdown {
-        margin-right: 10px; 
+        margin-right: 6px; /* Jarak dropdown dari sisi kanan navbar */
     }
     .dropdown-menu {
-        min-width: 100%; 
+        min-width: 100%; /* Menyamakan lebar dropdown dengan tombol dropdown */
     }
 </style>
 
-<div class="container-fluid">
-    <!-- NAVBAR -->
+<div class="container-fluid p-0">
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-primary w-100 fixed-top">
         <a class="navbar-brand" href="#">Fox Sense</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,12 +32,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="d-flex w-100 align-items-center">
+                <!-- Search bar group berada di tengah dengan mx-auto -->
                 <div class="search-group mx-auto">
-                    <form action="" method="pos">
-                        <input class="form-control" type="search" placeholder="Search bar Policies" aria-label="Search Policies">
-                        <input class="form-control" type="search" placeholder="Search bar Customers" aria-label="Search Customers">
-                        <button class="btn btn-secondary" type="submit">Search</button>
-                    </form>
+                    <input class="form-control" type="search" placeholder="Search bar Policies" aria-label="Search Policies">
+                    <input class="form-control" type="search" placeholder="Search bar Customers" aria-label="Search Customers">
+                    <button class="btn btn-secondary" type="submit">Search</button>
                 </div>
                 <div class="dropdown ml-auto">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -51,18 +50,17 @@
             </div>
         </div>
     </nav>
-
-    <!-- MAIN CONTENT -->
+    <!-- Main Content -->
     <div class="row" style="margin-top: 56px;">
         <div class="col-2 bg-light border-right">
-            <!-- SIDEBAR -->
+            <!-- Sidebar Links -->
             <div class="nav flex-column nav-pills">
                 <a class="nav-link text-dark" href="#">Policies</a>
                 <a class="nav-link text-dark" href="#">Customers</a>
             </div>
         </div>
         <div class="col-10" style="margin-bottom: 10000px;">
-            <!-- MAIN -->
+            <!-- Content Area -->
             <div class="p-4">
                 <h2>Home</h2>
                 <p>++++++</p>
