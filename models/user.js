@@ -1,4 +1,6 @@
 "use strict";
+const bcrypt = require("bcryptjs");
+
 const { Model, Op } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -9,16 +11,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasOne(models.Profile);
+      User.hasOne(models.Profile, { foreignKey: "userId" });
     }
 
     static async findUserWithEmail(email) {
       try {
+        const { Profile } = sequelize.models;
         const foundUser = await User.findOne({
-          where: {
-            email: email,
-          },
+          where: { email },
+          include: Profile,
         });
+        //   .then((user) => {
+        //   if (user && bcrypt.compare(password, user.password)) {
+        //     req.session.user = {
+        //       id: user.id,
+        //       email: user.email,
+        //       name: user.Profile.fullName,
+        //     };
+        //   }
+        // });
         return foundUser;
       } catch (error) {
         throw error;

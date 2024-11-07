@@ -1,6 +1,7 @@
 const PolicyController = require("../controllers/policyController");
 const ProfileController = require("../controllers/profileController");
 const UserController = require("../controllers/userController");
+const isAuthenticated = require("../helpers/isAuthenticated");
 
 const router = require("express").Router();
 
@@ -18,12 +19,12 @@ router.post("/login", UserController.loginUser);
  **/
 
 // router ini berguna untuk masuk ke link changeemailpassword untuk membuat email dan password
-router.get("/changeemailpassword", UserController.updateUserForm);
-router.post("/changeemailpassword", UserController.updateUser);
+router.get("/changeemailpassword", isAuthenticated, UserController.updateUserForm);
+router.post("/changeemailpassword", isAuthenticated, UserController.updateUser);
 // router.get("/register", UserController.createUserForm);
 router.get("/changePassword", UserController.changePassword);
 // register akan bersamaan dengan pembuatan profileId dan roleId
-// untuk pembuatan otomatis roleId = [1,2], kalau 1 => "Customer", kalau 2 => Agent
+// untuk pembuatan otomatis role default = Customer
 // router.post("/register", UserController.createUser);
 // router.get("/changePassword", UserController.updateUserForm);
 // router.post("/changePassword", UserController.updateUser);

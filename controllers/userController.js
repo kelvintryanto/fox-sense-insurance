@@ -30,14 +30,14 @@ class UserController {
     try {
       const { email, password } = req.body;
       const foundUser = await User.findUserWithEmail(email);
-      const isValidated = bcrypt.compareSync(password, foundUser.password);
-      let validatedUser;
-      if (isValidated) validatedUser = foundUser;
-      const data = {
-        title: "Profile",
-        user: foundUser,
-      };
-      res.render("profile/readProfile", { data });
+      
+      if (foundUser)
+      {
+        if(foundUser)
+        res.render("profile/readProfile", { data });
+        
+      }
+      else res.redirect("/");
     } catch (error) {
       res.send(error);
     }
