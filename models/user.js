@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasOne(models.Profile);
     }
 
-    static async findUserWithEmailPassword(email) {
+    static async findUserWithEmail(email) {
       try {
         const foundUser = await User.findAll({
           where: {
