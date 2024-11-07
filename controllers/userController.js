@@ -14,9 +14,10 @@ class UserController {
   }
 
   // read
-  static async readUser(req, res) {
+  static async readUser(req, res, next) {
     try {
       // memasukkan data yang dipanggil
+      if (req.session && req.session.user) next();
       const data = {
         title: "Login User",
       };

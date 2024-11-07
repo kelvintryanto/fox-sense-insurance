@@ -9,7 +9,7 @@ const router = require("express").Router();
 router.get("/", UserController.showLandingPage);
 
 //  === Customer ===
-router.get("/login", UserController.readUser);
+router.get("/login", UserController.readUser, isAuthenticated, ProfileController.readProfile);
 router.post("/login", UserController.loginUser);
 /* tidak ada register, karena pembuatan email dan address nanti jika user diberikan link melalui twilio
  * router.get("/register", UserController.createUserForm);
@@ -41,7 +41,7 @@ router.get("/changePassword", UserController.changePassword);
 
 //  === Agent Profile & User Profile ===
 // ditaruh di bawah karena di segment ketiga ada parameter
-router.get("/profile/read/:userId", ProfileController.readProfile);
+router.get("/profile/read/:userId", isAuthenticated, ProfileController.readProfile);
 // post create Agent dan User dibuat otomatis, ketika ada yang createUser
 // router.post("/profile/create/:userId", ProfileController.createUser);
 // get create profile tidak ada karena sudah dibuatkan otomatis profile Idnya serial dan diisi hanya dengan userId
