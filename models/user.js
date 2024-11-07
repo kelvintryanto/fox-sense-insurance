@@ -12,6 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasOne(models.Profile, { foreignKey: "userId" });
+      User.hasMany(models.Policy, { foreignKey: "agentId" });
+      User.hasMany(models.Policy, { foreignKey: "customerId" });
     }
 
     static async findUserWithEmail(email) {
@@ -35,10 +37,33 @@ module.exports = (sequelize, DataTypes) => {
         throw error;
       }
     }
+
+    static async createUser(email, password) {
+      try {
+        const salt = bcrypt.genSaltSync(10);
+        const hashedPassword = bcrypt.hashSync(password, salt);
+        return await User.create({
+          email: email,
+          password: hashedPassword,
+          role: "Agent",
+          createdAt: new Date(),
+          updatedAt: new Date()
+        });
+      } catch (error) {
+        throw error;
+      }
+    }
   }
   User.init(
     {
-      email: DataTypes.STRING,
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: {
+          args: true,
+          msg: "Email already registered",
+        },
+      },
       password: DataTypes.STRING,
       role: DataTypes.STRING,
     },

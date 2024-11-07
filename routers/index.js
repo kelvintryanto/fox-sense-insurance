@@ -1,7 +1,7 @@
 const PolicyController = require("../controllers/policyController");
 const ProfileController = require("../controllers/profileController");
 const UserController = require("../controllers/userController");
-const { isAuthenticated, isAuthenticatedAgent, isAuthenticatedCustomer, authorizeRole } = require("../helpers/isAuthenticated");
+const { isAuthenticated, authorizeRole, validatePassword } = require("../helpers/isAuthenticated");
 
 const router = require("express").Router();
 
@@ -9,14 +9,15 @@ const router = require("express").Router();
 router.get("/", UserController.showLandingPage);
 
 //  === Customer ===
-router.get("/login", UserController.readUser, isAuthenticated, authorizeRole(["customer", "agent"], UserController.readUser));
-router.post("/login", UserController.loginUser, isAuthenticated, authorizeRole(["customer", "agent"], UserController.loginUser));
-/* tidak ada register, karena pembuatan email dan address nanti jika user diberikan link melalui twilio
- * router.get("/register", UserController.createUserForm);
- * register akan bersamaan dengan pembuatan profileId dan roleId
- * untuk pembuatan otomatis roleId = [1,2], kalau 1 => "Customer", kalau 2 => Agent
- * router.post("/register", UserController.createUser);
- **/
+router.get("/login", UserController.readUser, isAuthenticated, (req, res) => res.redirect("/profile"));
+router.post("/login", UserController.loginUser, isAuthenticated, (req, res) => res.redirect("/profile"));
+// /* tidak ada register, karena pembuatan email dan address nanti jika user diberikan link melalui twilio
+router.get("/register", UserController.createUserForm);
+router.post("/register", validatePassword, UserController.createUser)
+//  * register akan bersamaan dengan pembuatan profileId dan roleId
+//  * untuk pembuatan otomatis roleId = [1,2], kalau 1 => "Customer", kalau 2 => Agent
+//  * router.post("/register", UserController.createUser);
+//  **/
 
 // router ini berguna untuk masuk ke link changeemailpassword untuk membuat email dan password
 // router.get("/changeemailpassword", isAuthenticated, UserController.updateUserForm);
@@ -32,7 +33,7 @@ router.post("/login", UserController.loginUser, isAuthenticated, authorizeRole([
 // router.get("/delete", UserController.deleteUser);
 
 //   === policy ===
-// router.get("/agent/policies/read", PolicyController.readPolicy);
+router.get("/agent/policies/read", isAuthenticated, authorizeRole("Agent"), PolicyController.readPolicy);
 // router.get("/user/policy/read/:profileId", PolicyController.readPolicyByProfileId);
 // router.get("/user/policy/create");
 // router.post("/user/policy/create");
@@ -40,14 +41,13 @@ router.post("/login", UserController.loginUser, isAuthenticated, authorizeRole([
 // router.post("/user/policy/edit");
 
 //  === Agent Profile & User Profile ===
-// ditaruh di bawah karena di segment ketiga ada parameter
-router.get("/profile/customer/:userId", isAuthenticated, authorizeRole("Customer"), ProfileController.readProfile);
-router.get("/profile/agent/:userId", isAuthenticated, authorizeRole("Agent"), ProfileController.readProfile);
+router.get("/profile", isAuthenticated, ProfileController.readProfile);
 // post create Agent dan User dibuat otomatis, ketika ada yang createUser
 // router.post("/profile/create/:userId", ProfileController.createUser);
 // get create profile tidak ada karena sudah dibuatkan otomatis profile Idnya serial dan diisi hanya dengan userId
-// router.get("/profile/update/:userId", ProfileController.updateUserForm);
+router.get("/profile/update", isAuthenticated, ProfileController.updateProfileForm);
 // router.post("/profile/update/:userId", ProfileController.updateUser);
 // get tidak ada karena delete Profile sama saja dengan deleteUser
+router.get("/logout", UserController.logout);
 
 module.exports = router;

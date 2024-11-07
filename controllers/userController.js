@@ -16,7 +16,7 @@ class UserController {
   // read
   static async readUser(req, res, next) {
     try {
-      // memasukkan data yang dipanggil
+      // jika sudah login langsung masuk saja ke profil next
       if (req.session && req.session.user) next();
       const data = {
         title: "Login User",
@@ -34,41 +34,27 @@ class UserController {
 
       if (user && bcrypt.compare(user.password, password)) {
         req.session.user = {
-          id: user.id,
-          email: user.email,
-          fullName: user.Profile.fullName,
+          user: user,
         };
 
         // console.log(user.id);
-        res.redirect(`/profile/read/${user.id}`);
+        res.redirect("/profile");
       } else res.redirect("/");
     } catch (error) {
       res.send(error);
     }
   }
 
-  // showCreate (form)
-  // register user form tidak ada, nanti dibikinkan saat
-  // membuat policies
-  // static async createUserForm(req, res) {
-  //   try {
-  //     // memasukkan data yang dipanggil
-  //     const data = {
-  //       title: "Register User",
-  //     };
-
-  //     res.render("user/register", { data });
-
-  //   } catch (error) {
-  //     console.log(error);
-  //     res.send(error);
-  //   }
-  // }
-
-  static async changePassword(req, res) {
+  static async createUserForm(req, res) {
     try {
-      res.render("user/changePassword");
+      // memasukkan data yang dipanggil
+      const data = {
+        title: "Register User",
+      };
+
+      res.render("user/register", { data });
     } catch (error) {
+      console.log(error);
       res.send(error);
     }
   }
@@ -76,8 +62,20 @@ class UserController {
   // createUser tetap ada karena dibutuhkan saat membuat user
   static async createUser(req, res) {
     try {
-      // kembali ke login
-      res.redirect("/");
+      const { email, password } = req.body;
+      console.log(email)
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      const user = await User.createUser(email, password);
+      res.redirect("/login");
+    } catch (error) {
+      res.send(error);
+    }
+  }
+
+  static async changePassword(req, res) {
+    try {
+      res.render("user/changePassword");
     } catch (error) {
       res.send(error);
     }
@@ -117,6 +115,15 @@ class UserController {
   //     res.send(error);
   //   }
   // }
+
+  static async logout(req, res) {
+    try {
+      req.session.destroy();
+      res.redirect("/");
+    } catch (error) {
+      res.send(error);
+    }
+  }
 }
 
 module.exports = UserController;
