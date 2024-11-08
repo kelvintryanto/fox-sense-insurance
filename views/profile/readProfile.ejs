@@ -12,23 +12,23 @@
         <table>
           <tr>
             <td class="text-end pe-2">FullName</td>
-            <td class="<%= user.user.Profile.fullName ? "text-success" : "text-secondary" %>"><%= user.user.Profile.fullName ?? "Edit your Profile" %></td>
+            <td class="<%= profile.fullName ? "text-success" : "text-secondary" %>"><%= profile.fullName ?? "Edit your Profile" %></td>
           </tr>
           <tr>
             <td class="text-end pe-2">Birth Place</td>
-            <td class="<%= user.user.Profile.fullName ? "text-success" : "text-secondary"%>"><%= user.user.Profile.birthPlace ?? "Edit your Profile" %></td>
+            <td class="<%= profile.fullName ? "text-success" : "text-secondary"%>"><%= profile.birthPlace ?? "Edit your Profile" %></td>
           </tr>
           <tr>
             <td class="text-end pe-2">Birth Date</td>
-            <td class="<%= user.user.Profile.fullName ? "text-success" : "text-secondary"%>"><%= user.user.Profile.birthdate ?? "Edit your Profile" %></td>
+            <td class="<%= profile.fullName ? "text-success" : "text-secondary"%>"><%= profile.birthdate ?? "Edit your Profile" %></td>
           </tr>
           <tr>
             <td class="text-end pe-2">Gender</td>
-            <td class="<%= user.user.Profile.fullName ? "text-success" : "text-secondary"%>"><%= user.user.Profile.gender ?? "Edit your Profile" %></td>
+            <td class="<%= profile.fullName ? "text-success" : "text-secondary"%>"><%= profile.gender ?? "Edit your Profile" %></td>
           </tr>
           <tr>
             <td class="text-end pe-2">Phone Number</td>
-            <td class="<%= user.user.Profile.fullName ? "text-success" : "text-secondary"%>"><%= user.user.Profile.phoneNumber ?? "Edit your Profile" %></td>
+            <td class="<%= profile.fullName ? "text-success" : "text-secondary"%>"><%= profile.phoneNumber ?? "Edit your Profile" %></td>
           </tr>
         </table>
       </div>

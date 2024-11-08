@@ -13,7 +13,7 @@ router.get("/login", UserController.readUser, isAuthenticated, (req, res) => res
 router.post("/login", UserController.loginUser, isAuthenticated, (req, res) => res.redirect("/profile"));
 // /* tidak ada register, karena pembuatan email dan address nanti jika user diberikan link melalui twilio
 router.get("/register", UserController.createUserForm);
-router.post("/register", validatePassword, UserController.createUser)
+router.post("/register", validatePassword, UserController.createUser);
 //  * register akan bersamaan dengan pembuatan profileId dan roleId
 //  * untuk pembuatan otomatis roleId = [1,2], kalau 1 => "Customer", kalau 2 => Agent
 //  * router.post("/register", UserController.createUser);
@@ -46,7 +46,7 @@ router.get("/profile", isAuthenticated, ProfileController.readProfile);
 // router.post("/profile/create/:userId", ProfileController.createUser);
 // get create profile tidak ada karena sudah dibuatkan otomatis profile Idnya serial dan diisi hanya dengan userId
 router.get("/profile/update", isAuthenticated, ProfileController.updateProfileForm);
-// router.post("/profile/update/:userId", ProfileController.updateUser);
+router.post("/profile/update", ProfileController.updateProfile);
 // get tidak ada karena delete Profile sama saja dengan deleteUser
 router.get("/logout", UserController.logout);
 

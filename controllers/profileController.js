@@ -2,12 +2,13 @@ class ProfileController {
   static async readProfile(req, res) {
     try {
       console.log("masuk Controller.readProfile", 4);
-      const user = req.session.user;
+      const user = req.session.user.user;
+      const profile = req.session.user.user.Profile;
       console.log(user);
       const data = {
         title: "Profile",
       };
-      res.render("profile/readProfile", { data, user });
+      res.render("profile/readProfile", { data, user, profile });
     } catch (error) {
       res.send(error);
     }
@@ -47,10 +48,12 @@ class ProfileController {
   static async updateProfile(req, res) {
     try {
       const { fullName, birthPlace, birthDate, gender, phoneNumber } = req.body;
+      console.log(fullName, birthPlace, birthDate, gender, phoneNumber);
       const id = req.session.user.user.id;
-      const updatedUser = await User.updateProfile(id, fullName, birthPlace, birthDate, gender, phoneNumber);
-      
-      
+      console.log(+id);
+      const updatedProfile = await Profile.updateProfile(id, fullName, birthPlace, birthDate, gender, phoneNumber);
+      console.log(updatedProfile);
+      res.redirect("/profile");
     } catch (error) {
       res.send(error);
     }

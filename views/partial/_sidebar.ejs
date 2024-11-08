@@ -30,6 +30,6 @@
   <hr class="text-light my-0" style="margin-right: 10px; margin-left: 10px" />
   <div class="d-flex flex-column mt-0">
     <a class="nav-link" href="#">Customers</a>
-    <a class="nav-link" <%= user.user.role === "Agent" ? "" : "hidden" %> href="/agent/policies/read">Policies</a>
+    <a class="nav-link" <%= user.role === "Agent" ? "" : "hidden" %> href="/agent/policies/read">Policies</a>
   </div>
 </div>

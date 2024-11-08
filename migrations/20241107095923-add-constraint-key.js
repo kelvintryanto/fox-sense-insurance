@@ -60,10 +60,10 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.removeConstraint("Profiles", "fk_Profiles_userId");
-    await queryInterface.removeConstraint("Policies", "fk_Policies_customerId");
-    await queryInterface.removeConstraint("Policies", "fk_Policies_agentId");
-    await queryInterface.removeConstraint("Type", "fk_Types_typeId");
+    // await queryInterface.removeConstraint("Profiles", "fk_Profiles_userId");
+    // await queryInterface.removeConstraint("Policies", "fk_Policies_customerId");
+    // await queryInterface.removeConstraint("Policies", "fk_Policies_agentId");
+    // await queryInterface.removeConstraint("Policies", "fk_Policies_typeId");
     /**
      * Add reverting commands here.
      *

@@ -11,6 +11,29 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Profile.belongsTo(models.User, { foreignKey: "userId" });
     }
+
+    static async updateProfile(userId, fullName, birthPlace, birthDate, gender, phoneNumber) {
+      try {
+        const newProfile = await Profile.update(
+          {
+            fullName,
+            birthPlace,
+            birthDate,
+            gender,
+            phoneNumber,
+          },
+          {
+            where: {
+              userId: userId,
+            },
+          }
+        );
+
+        return newProfile;
+      } catch (error) {
+        throw error;
+      }
+    }
   }
   Profile.init(
     {

@@ -31,8 +31,7 @@ class UserController {
     try {
       const { email, password } = req.body;
       const user = await User.findUserWithEmail(email);
-
-      if (user && bcrypt.compare(user.password, password)) {
+      if (user && bcrypt.compareSync(password, user.password)) {
         req.session.user = {
           user: user,
         };
@@ -63,7 +62,7 @@ class UserController {
   static async createUser(req, res) {
     try {
       const { email, password } = req.body;
-      console.log(email)
+      console.log(email);
       const hashedPassword = await bcrypt.hash(password, 10);
 
       const user = await User.createUser(email, password);

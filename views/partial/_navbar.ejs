@@ -12,7 +12,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= user.user.Profile.fullName ?? user.user.email %></a>
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= profile.fullName ?? user.email %></a>
             <ul class="dropdown-menu" style="right: 0; left: unset" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="/profile">Profile</a></li>
               <li><hr class="dropdown-divider" /></li>
