@@ -38,8 +38,17 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
 
-    static async createUser(email, password) {
+    static async findUserWithId(userId) {
       try {
+        return await User.findByPk(userId);
+      } catch (error) {
+        throw error;
+      }
+    }
+
+    static async createUser(email, password) {
+      try
+      {        
         const salt = bcrypt.genSaltSync(10);
         const hashedPassword = bcrypt.hashSync(password, salt);
         return await User.create({
@@ -47,7 +56,7 @@ module.exports = (sequelize, DataTypes) => {
           password: hashedPassword,
           role: "Agent",
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         });
       } catch (error) {
         throw error;
@@ -59,12 +68,27 @@ module.exports = (sequelize, DataTypes) => {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: {
-          args: true,
-          msg: "Email already registered",
+        validate: {
+          isEmail: {
+            msg: "Email address must be valid",
+          },
+          async isUnique(value) {
+            return await User.findOne({ where: { email: value } }).then((email) => {
+              if (email) {
+                throw new Error("Email already registered");
+              }
+            });
+          },
         },
       },
-      password: DataTypes.STRING,
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Please enter the password" },
+          notEmpty: { msg: "Please enter the password" },
+        },
+      },
       role: DataTypes.STRING,
     },
     {

@@ -29,10 +29,8 @@ module.exports = {
       profile.createdAt = profile.updatedAt = new Date();
       return profile;
     });
-    console.log(profiles);
 
-    const userProfile = await queryInterface.bulkInsert("Profiles", profiles, { returning: true });
-    console.log(userProfile);
+    await queryInterface.bulkInsert("Profiles", profiles, { returning: true });
     /**
      * Add seed commands here.
      *

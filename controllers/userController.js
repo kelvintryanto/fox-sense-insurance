@@ -1,4 +1,5 @@
-const { User } = require("../models");
+const { validatePassword } = require("../helpers/isAuthenticated");
+const { User, Profile } = require("../models");
 const bcrypt = require("bcryptjs");
 
 class UserController {
@@ -63,11 +64,20 @@ class UserController {
     try {
       const { email, password } = req.body;
       console.log(email);
-      const hashedPassword = await bcrypt.hash(password, 10);
-
       const user = await User.createUser(email, password);
+      // const userCreated = await User.findUserWithId(user.id);
+      // console.log(userCreated);
+      let profile;
+      // if(userCreated) await Profile.createProfileWithUserId(user.id)
+      // validateUsernya dulu terbuat atau tidak
+      // jika tidak ya jangan buat profile, kalau terbuat usernya baru buat profile
+      // const profile = await Profile.createProfileWithUserId(user.id);
+      console.log(user);
+      // console.log(profile);
+
       res.redirect("/login");
     } catch (error) {
+      console.log(error);
       res.send(error);
     }
   }

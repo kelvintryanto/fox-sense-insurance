@@ -1,3 +1,5 @@
+const { Profile } = require("../models");
+
 class ProfileController {
   static async readProfile(req, res) {
     try {
@@ -49,9 +51,22 @@ class ProfileController {
     try {
       const { fullName, birthPlace, birthDate, gender, phoneNumber } = req.body;
       console.log(fullName, birthPlace, birthDate, gender, phoneNumber);
-      const id = req.session.user.user.id;
+      const id = req.session.user.user.Profile.userId;
       console.log(+id);
-      const updatedProfile = await Profile.updateProfile(id, fullName, birthPlace, birthDate, gender, phoneNumber);
+      await Profile.update(
+        {
+          fullName: fullName,
+          birthPlace: birthPlace,
+          birthDate: birthDate,
+          gender: gender,
+          phoneNumber: phoneNumber,
+        },
+        {
+          where: {
+            userId: id,
+          },
+        }
+      );
       console.log(updatedProfile);
       res.redirect("/profile");
     } catch (error) {

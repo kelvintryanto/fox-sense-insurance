@@ -12,9 +12,26 @@ module.exports = (sequelize, DataTypes) => {
       Profile.belongsTo(models.User, { foreignKey: "userId" });
     }
 
+    toIsoTime() {
+      console.log(this.birthDate.toIsoTime().split("T")[0]);
+      return;
+    }
+
+    static async createProfileWithUserId(userId) {
+      try {
+        console.log("Get Into Model Profile.createProfileWithUserId: ", userId, 22);
+        return await Profile.create({
+          userId: userId,
+        });
+      } catch (error) {
+        throw error;
+      }
+    }
+
     static async updateProfile(userId, fullName, birthPlace, birthDate, gender, phoneNumber) {
       try {
-        const newProfile = await Profile.update(
+        console.log("masuk model update profile");
+        return await Profile.update(
           {
             fullName,
             birthPlace,
@@ -28,8 +45,6 @@ module.exports = (sequelize, DataTypes) => {
             },
           }
         );
-
-        return newProfile;
       } catch (error) {
         throw error;
       }

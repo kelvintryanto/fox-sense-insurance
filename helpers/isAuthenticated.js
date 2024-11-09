@@ -17,16 +17,21 @@ function authorizeRole(allowedRoles) {
 }
 
 function validatePassword(req, res, next) {
-  const { password, repeatpassword } = req.body;
-  if (!password || !repeatpassword) {
-    return res.status(400).json({ message: "Password dan Repeat Password wajib diisi!" });
-  }
+  try {
+    const { password, repeatpassword } = req.body;
+    if (!password || !repeatpassword) {
+      return res.status(400).json({ message: "Password dan Repeat Password wajib diisi!" });
+    }
 
-  if (password !== repeatpassword) {
-    return res.status(400).json({ message: "Password tidak cocok!" });
+    if (password !== repeatpassword) {
+      return res.status(400).json({ message: "Password tidak cocok!" });
+    }
+    // kembali ke login
+    next();
+  } catch (error)
+  {
+    console.log(error)
   }
-  // kembali ke login
-  next();
 }
 
 module.exports = { isAuthenticated, authorizeRole, validatePassword };

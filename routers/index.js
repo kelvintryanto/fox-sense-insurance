@@ -8,12 +8,12 @@ const router = require("express").Router();
 // default untuk login di dalam user
 router.get("/", UserController.showLandingPage);
 
-//  === Customer ===
-router.get("/login", UserController.readUser, isAuthenticated, (req, res) => res.redirect("/profile"));
-router.post("/login", UserController.loginUser, isAuthenticated, (req, res) => res.redirect("/profile"));
-// /* tidak ada register, karena pembuatan email dan address nanti jika user diberikan link melalui twilio
+//  === User ===
 router.get("/register", UserController.createUserForm);
 router.post("/register", validatePassword, UserController.createUser);
+router.get("/login", UserController.readUser);
+router.post("/login", UserController.loginUser, isAuthenticated, (req, res) => res.redirect("/profile"));
+
 //  * register akan bersamaan dengan pembuatan profileId dan roleId
 //  * untuk pembuatan otomatis roleId = [1,2], kalau 1 => "Customer", kalau 2 => Agent
 //  * router.post("/register", UserController.createUser);
