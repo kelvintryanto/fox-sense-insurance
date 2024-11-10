@@ -1,6 +1,15 @@
-<div class="border-end col-md-3 col-lg-2 me-0 px-3 fs-7" style="min-height: 100vh;">
-  <div class="d-flex flex-column mt-0">
-    <a class="nav-link" href="#">Customers</a>
-    <a class="nav-link" <%= user.role == "Agent" ? "" : "hidden" %> href="/agent/policies/read">Policies</a>
+<div class="border-end col-md-3 col-lg-2 me-0 fs-6" style="min-height: 100vh;">
+  <div class="d-flex flex-column flex-shrink-0 p-3 mt-0">
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a class="nav-link active btn text-start" href="#"><i class="bi bi-person-bounding-box"></i> Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link btn text-start" <%= user.role == "Agent" ? "" : "hidden" %> href="#"><i class="bi bi-person-lines-fill"></i> Customers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/agent/policies/read"><i class="bi bi-filetype-doc"></i> Policies</a>
+      </li>
+    </ul>
   </div>
 </div>

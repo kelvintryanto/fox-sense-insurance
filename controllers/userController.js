@@ -18,13 +18,11 @@ class UserController {
     try {
       // jika sudah login langsung masuk saja ke profil next
       if (req.session && req.session.user) next();
-      console.log("masuk UserController.readUser", 21);
       const { errors } = req.query;
       const data = {
         title: "Login User",
         errors,
       };
-      console.log("data: ", data, 27);
       res.render("user/login", { data });
     } catch (error) {
       res.send(error);
@@ -40,10 +38,8 @@ class UserController {
         req.session.user = user;
         req.session.profile = user.Profile;
 
-        // console.log(user.id);
         res.redirect("/profile");
       } else {
-        console.log("masuk sini kalo error");
         throw new Error("Incorrect Email or Password");
       }
     } catch (error) {
@@ -69,7 +65,6 @@ class UserController {
 
   static async createUser(req, res) {
     try {
-      console.log("masuk userController.createUser: ", 63);
       const { email, password } = req.body;
 
       const user = await User.createUser(email, password);
@@ -79,7 +74,6 @@ class UserController {
       res.redirect("/profile");
     } catch (error) {
       if (error.name === "SequelizeValidationError") {
-        console.log(error);
         res.redirect(`/register?errorEmail=${error.errors[0].message}`);
       } else res.send(error);
     }

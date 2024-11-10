@@ -6,10 +6,7 @@ function isAuthenticated(req, res, next) {
 
 function authorizeRole(allowedRoles) {
   return (req, res, next) => {
-    console.log(allowedRoles, req.session.user.user.role);
-    console.log(allowedRoles.includes(req.session.user.user.role));
-
-    if (!req.session.user || !allowedRoles.includes(req.session.user.user.role)) {
+    if (!req.session.user || !allowedRoles.includes(req.session.user.role)) {
       return res.status(403).json({ message: "Access denied!" });
     }
     next();
