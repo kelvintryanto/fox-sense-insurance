@@ -12,7 +12,7 @@ router.get("/", UserController.showLandingPage);
 router.get("/register", UserController.createUserForm);
 router.post("/register", validatePassword, UserController.createUser);
 router.get("/login", UserController.readUser);
-router.post("/login", UserController.loginUser, isAuthenticated, (req, res) => res.redirect("/profile"));
+router.post("/login", UserController.loginUser);
 
 //  * register akan bersamaan dengan pembuatan profileId dan roleId
 //  * untuk pembuatan otomatis roleId = [1,2], kalau 1 => "Customer", kalau 2 => Agent

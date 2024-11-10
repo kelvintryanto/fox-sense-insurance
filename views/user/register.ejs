@@ -11,19 +11,22 @@
     <div class="col-lg-4 col-sm-8">
       <h2 class="my-5">Fox Sense Insurance</h2>
       <div class="card shadow p-4">
-        <h3 class="text-center mb-4">Register</h3>
+        <h3 class="text-center mb-4">Agent Register</h3>
         <form action="/register" class="mt-4" method="post">
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="Email" name="email" />
+            <input type="email" class="form-control <%= data.errorEmail ? "is-invalid":"" %>" id="floatingInput" placeholder="Email" name="email" />
             <label for="floatingInput">Email Address</label>
+            <div class="invalid-feedback text-start"><%= data.errorEmail %></div>
           </div>
           <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" />
+            <input type="password" class="form-control <%= data.errorPassword ? "is-invalid": "" %>" id="floatingPassword" placeholder="Password" name="password" />
             <label for="floatingPassword">Password</label>
+            <div class="invalid-feedback text-start"><%= data.errorPassword ?? "" %></div>
           </div>
           <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingRepeatPassword" placeholder="Password" name="repeatpassword" />
+            <input type="password" class="form-control <%= data.errorPassword ? "is-invalid":"" %>" id="floatingRepeatPassword" placeholder="Password" name="repeatpassword" />
             <label for="floatingRepeatPassword">Repeat new password</label>
+            <div class="invalid-feedback text-start"><%= data.errorPassword ? (data.errorPassword==="Password not matched" ? data.errorPassword: "") : "" %></div>
           </div>
 
           <button type="submit" class="btn btn-primary w-100 my-4">Register</button>

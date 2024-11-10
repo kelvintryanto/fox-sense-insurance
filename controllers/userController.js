@@ -1,4 +1,3 @@
-const { validatePassword } = require("../helpers/isAuthenticated");
 const { User, Profile } = require("../models");
 const bcrypt = require("bcryptjs");
 
@@ -30,16 +29,18 @@ class UserController {
 
   static async loginUser(req, res) {
     try {
+      if (req.session && req.session.user) res.redirect("/profile");
       const { email, password } = req.body;
       const user = await User.findUserWithEmail(email);
       if (user && bcrypt.compareSync(password, user.password)) {
-        req.session.user = {
-          user: user,
-        };
+        req.session.user = user;
+        req.session.profile = user.Profile;
 
         // console.log(user.id);
         res.redirect("/profile");
-      } else res.redirect("/");
+      } else {
+        res.redirect("/login");
+      }
     } catch (error) {
       res.send(error);
     }
@@ -48,8 +49,15 @@ class UserController {
   static async createUserForm(req, res) {
     try {
       // memasukkan data yang dipanggil
+      // const errorEmail = req.session.errorEmail ? req.session.errorEmail.message : undefined;
+      // tampung semua errors di dalam errors
+      const { errorPassword, errorEmail } = req.query;
+      // const { errorPassword, errorEmail } = req.query.errors;
+      // console.log(errorPassword, errorEmail);
       const data = {
         title: "Register User",
+        errorPassword,
+        errorEmail,
       };
 
       res.render("user/register", { data });
@@ -59,26 +67,21 @@ class UserController {
     }
   }
 
-  // createUser tetap ada karena dibutuhkan saat membuat user
   static async createUser(req, res) {
     try {
+      console.log("masuk userController.createUser: ", 63);
       const { email, password } = req.body;
-      console.log(email);
-      const user = await User.createUser(email, password);
-      // const userCreated = await User.findUserWithId(user.id);
-      // console.log(userCreated);
-      let profile;
-      // if(userCreated) await Profile.createProfileWithUserId(user.id)
-      // validateUsernya dulu terbuat atau tidak
-      // jika tidak ya jangan buat profile, kalau terbuat usernya baru buat profile
-      // const profile = await Profile.createProfileWithUserId(user.id);
-      console.log(user);
-      // console.log(profile);
 
-      res.redirect("/login");
+      const user = await User.createUser(email, password);
+      // kalau berhasil buat user maka buat profilenya
+      await Profile.createProfileWithUserId(user.id);
+
+      res.redirect("/profile");
     } catch (error) {
-      console.log(error);
-      res.send(error);
+      if (error.name === "SequelizeValidationError") {
+        console.log(error);
+        res.redirect(`/register?errorEmail=${error.errors[0].message}`);
+      } else res.send(error);
     }
   }
 

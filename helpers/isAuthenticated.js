@@ -20,17 +20,22 @@ function validatePassword(req, res, next) {
   try {
     const { password, repeatpassword } = req.body;
     if (!password || !repeatpassword) {
-      return res.status(400).json({ message: "Password dan Repeat Password wajib diisi!" });
+      throw new Error("Please fill the password!");
+      // errors = "Please fill the password!";
     }
 
     if (password !== repeatpassword) {
-      return res.status(400).json({ message: "Password tidak cocok!" });
+      throw new Error("Password not matched");
+      // errors = "Password not matched!";
     }
+
+    // throw new Error(res.status(400).json(errors));
+    // if (errors) res.redirect(`/register?error=${errors}`);
     // kembali ke login
+    // else
     next();
-  } catch (error)
-  {
-    console.log(error)
+  } catch (error) {
+    res.redirect(`/register?errorPassword=${error.message}`);
   }
 }
 

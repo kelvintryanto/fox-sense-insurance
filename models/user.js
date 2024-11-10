@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     static async findUserWithEmail(email) {
       try {
         const { Profile } = sequelize.models;
-        const foundUser = await User.findOne({
+        let foundUser = await User.findOne({
           where: { email },
           include: Profile,
         });
@@ -32,7 +32,8 @@ module.exports = (sequelize, DataTypes) => {
         //     };
         //   }
         // });
-        return foundUser;
+        foundUser = foundUser ?? undefined;
+        return foundUser
       } catch (error) {
         throw error;
       }
@@ -85,8 +86,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notNull: { msg: "Please enter the password" },
-          notEmpty: { msg: "Please enter the password" },
+          notNull: { msg: "Please fill the password" },
+          notEmpty: { msg: "Please fill the password" },
         },
       },
       role: DataTypes.STRING,

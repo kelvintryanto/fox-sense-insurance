@@ -4,9 +4,8 @@ class ProfileController {
   static async readProfile(req, res) {
     try {
       console.log("masuk Controller.readProfile", 4);
-      const user = req.session.user.user;
-      const profile = req.session.user.user.Profile;
-      console.log(user);
+      const user = req.session.user;
+      const profile = req.session.profile;
       const data = {
         title: "Profile",
       };
