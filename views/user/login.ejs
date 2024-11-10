@@ -11,14 +11,17 @@
     <div class="col-3">
       <h2 class="my-5">Fox Sense Insurance</h2>
       <div class="card shadow p-4">
-        <h3 class="text-center mb-5">Login</h3>
+        <h3 class="text-center <%= data.errors ? "mb-3" : "mb-4" %>">Login</h3>
+        <% if(data.errors) { %>
+        <div class="text-center text-danger mb-3"><%= data.errors %></div>
+        <% } %>
         <form action="/login" method="post">
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="Email" autocomplete="off" name="email" />
+            <input type="email" class="form-control <%= data.errors ? "is-invalid" : "" %>" id="floatingInput" placeholder="Email" autocomplete="off" name="email" />
             <label for="floatingInput">Email Address</label>
           </div>
           <div class="form-floating mb-1">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" autocomplete="off" name="password" />
+            <input type="password" class="form-control <%= data.errors ? "is-invalid" : "" %>" id="floatingPassword" placeholder="Password" autocomplete="off" name="password" />
             <label for="floatingPassword">Password</label>
           </div>
           <button type="submit" class="btn btn-primary w-100 my-3">Login</button>

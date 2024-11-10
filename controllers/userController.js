@@ -18,9 +18,13 @@ class UserController {
     try {
       // jika sudah login langsung masuk saja ke profil next
       if (req.session && req.session.user) next();
+      console.log("masuk UserController.readUser", 21);
+      const { errors } = req.query;
       const data = {
         title: "Login User",
+        errors,
       };
+      console.log("data: ", data, 27);
       res.render("user/login", { data });
     } catch (error) {
       res.send(error);
@@ -39,21 +43,18 @@ class UserController {
         // console.log(user.id);
         res.redirect("/profile");
       } else {
-        res.redirect("/login");
+        console.log("masuk sini kalo error");
+        throw new Error("Incorrect Email or Password");
       }
     } catch (error) {
-      res.send(error);
+      if (error) res.redirect(`/login?errors=${error.message}`);
+      else res.send(error);
     }
   }
 
   static async createUserForm(req, res) {
     try {
-      // memasukkan data yang dipanggil
-      // const errorEmail = req.session.errorEmail ? req.session.errorEmail.message : undefined;
-      // tampung semua errors di dalam errors
       const { errorPassword, errorEmail } = req.query;
-      // const { errorPassword, errorEmail } = req.query.errors;
-      // console.log(errorPassword, errorEmail);
       const data = {
         title: "Register User",
         errorPassword,
@@ -62,7 +63,6 @@ class UserController {
 
       res.render("user/register", { data });
     } catch (error) {
-      console.log(error);
       res.send(error);
     }
   }
