@@ -1,6 +1,6 @@
-<div class="border border-right col-md-3 col-lg-2 me-0 px-3 fs-7" style="min-height: 100vh;">
+<div class="border-end col-md-3 col-lg-2 me-0 px-3 fs-7" style="min-height: 100vh;">
   <div class="d-flex flex-column mt-0">
     <a class="nav-link" href="#">Customers</a>
-    <a class="nav-link" <%= user.role === "Agent" ? "" : "hidden" %> href="/agent/policies/read">Policies</a>
+    <a class="nav-link" <%= user.role == "Agent" ? "" : "hidden" %> href="/agent/policies/read">Policies</a>
   </div>
 </div>

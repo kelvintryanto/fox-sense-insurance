@@ -14,8 +14,8 @@
         </form>
       </li>
       <li class="nav-item dropdown me-1">
-        <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= profile.fullName ?? user.email %></a>
-        <ul class="dropdown-menu" style="left: unset; right: 0">
+        <a class="nav-link dropdown-toggle text-light border" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= profile.fullName ?? user.email %></a>
+        <ul class="dropdown-menu text-end" style="left: unset; right: 0">
           <li><a class="dropdown-item" href="/profile">Profile</a></li>
           <li><hr class="dropdown-divider" /></li>
           <li><a class="dropdown-item" href="/logout">Log Out</a></li>
